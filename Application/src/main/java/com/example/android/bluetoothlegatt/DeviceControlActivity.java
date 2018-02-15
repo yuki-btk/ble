@@ -36,6 +36,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,6 +65,7 @@ public class DeviceControlActivity extends Activity {
             new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
     private boolean mConnected = false;
     private BluetoothGattCharacteristic mNotifyCharacteristic;
+    private ToggleButton mWriteBleNanoLedOnOffButton;
 
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
@@ -175,6 +177,16 @@ public class DeviceControlActivity extends Activity {
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         mDataField = (TextView) findViewById(R.id.data_value);
 
+        mWriteBleNanoLedOnOffButton = (ToggleButton) findViewById(R.id.blenano_led_onoff_button);
+        mWriteBleNanoLedOnOffButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.blenano_led_onoff_button){
+                    mWriteBleNanoLedOnOffButton.setEnabled(true);
+                }
+            }
+        });
+
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
@@ -247,6 +259,10 @@ public class DeviceControlActivity extends Activity {
         if (data != null) {
             mDataField.setText(data);
         }
+    }
+
+    private void init(){
+        mWriteBleNanoLedOnOffButton.setEnabled(false);
     }
 
     // Demonstrates how to iterate through the supported GATT Services/Characteristics.

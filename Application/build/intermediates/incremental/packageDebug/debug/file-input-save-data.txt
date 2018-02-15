@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Feb 15 17:15:21 JST 2018
+#Thu Feb 15 17:33:43 JST 2018
 2.base=/Users/koba/Desktop/ble/Application/build/intermediates/transforms/dexMerger/debug/16
 5.set=DEX
 0.path=classes.dex
