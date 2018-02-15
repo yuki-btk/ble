@@ -1,8 +1,8 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-57:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-57:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-57:12
+ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
 MERGED from [com.android.support:support-v13:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-v13-26.1.0.aar/094ae467c983b1d65037ba1801ccc531/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/62d33a8b88a29e785f66f9e7264b6dab/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-v4:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d2c710dea5cf78062657aef7148726c3/AndroidManifest.xml:17:1-31:12
@@ -15,8 +15,8 @@ MERGED from [com.android.support:support-core-ui:26.1.0] /Users/koba/.gradle/cac
 MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/4757e8758fb3fe54bb6a79643f8c2a11/AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-compat:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/725798247d4545dc598ded60ec693d92/AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/3cad7732af14cd322b00dcdb78e8a172/AndroidManifest.xml:17:1-30:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-57:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-57:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
 	package
 		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:19:5-50
 	android:versionName
