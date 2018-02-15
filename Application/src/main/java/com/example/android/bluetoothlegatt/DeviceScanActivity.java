@@ -119,7 +119,7 @@ public class DeviceScanActivity extends ListActivity {
         if (!isEnabledReadNotification()) {
             showNotificationAccessSettingMenu();
         } else {
-            finish();
+
         }
     }
 
