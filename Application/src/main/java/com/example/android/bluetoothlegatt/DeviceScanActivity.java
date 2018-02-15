@@ -22,11 +22,13 @@ import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v13.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -56,6 +58,28 @@ public class DeviceScanActivity extends ListActivity {
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
+
+    private void showNotificationAccessSettingMenu() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+        startActivity(intent);
+    }
+    private boolean isEnabledReadNotification() {
+        ContentResolver contentResolver = getContentResolver();
+        String rawListeners = Settings.Secure.getString(contentResolver,
+                "enabled_notification_listeners");
+        if (rawListeners == null || "".equals(rawListeners)) {
+            return false;
+        } else {
+            String[] listeners = rawListeners.split(":");
+            for (String listener : listeners) {
+                if (listener.startsWith(getPackageName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +113,13 @@ public class DeviceScanActivity extends ListActivity {
             Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
             finish();
             return;
+        }
+
+        // Checks notification service
+        if (!isEnabledReadNotification()) {
+            showNotificationAccessSettingMenu();
+        } else {
+            finish();
         }
     }
 

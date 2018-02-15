@@ -16,7 +16,6 @@
 
 package com.example.android.bluetoothlegatt;
 
-import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -35,11 +34,16 @@ import android.util.Log;
 import java.util.List;
 import java.util.UUID;
 
+import android.service.notification.NotificationListenerService;
+import android.service.notification.StatusBarNotification;
+
+
 /**
  * Service for managing connection and data communication with a GATT server hosted on a
  * given Bluetooth LE device.
  */
-public class BluetoothLeService extends Service {
+//public class BluetoothLeService extends Service {
+public class BluetoothLeService extends NotificationListenerService {
     private final static String TAG = BluetoothLeService.class.getSimpleName();
 
     private BluetoothManager mBluetoothManager;
@@ -47,6 +51,8 @@ public class BluetoothLeService extends Service {
     private String mBluetoothDeviceAddress;
     private BluetoothGatt mBluetoothGatt;
     private int mConnectionState = STATE_DISCONNECTED;
+    public int NotificationCounter=0;
+
 
     private static final int STATE_DISCONNECTED = 0;
     private static final int STATE_CONNECTING = 1;
@@ -65,6 +71,8 @@ public class BluetoothLeService extends Service {
 
     public final static UUID UUID_HEART_RATE_MEASUREMENT =
             UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
+    public final static UUID UUID_WRITE_CHARACTERISTIC =
+            UUID.fromString(SampleGattAttributes.CHAR_CUSTOM_SERVICE_WRITE);
 
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
@@ -112,6 +120,7 @@ public class BluetoothLeService extends Service {
                                             BluetoothGattCharacteristic characteristic) {
             broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
         }
+
     };
 
     private void broadcastUpdate(final String action) {
@@ -139,6 +148,24 @@ public class BluetoothLeService extends Service {
             final int heartRate = characteristic.getIntValue(format, 1);
             Log.d(TAG, String.format("Received heart rate: %d", heartRate));
             intent.putExtra(EXTRA_DATA, String.valueOf(heartRate));
+        } if (UUID_WRITE_CHARACTERISTIC.equals(characteristic.getUuid()) && NotificationCounter==1){
+            byte[] data = new byte[] {(byte) 0x01};
+            BluetoothGattCharacteristic ch = characteristic;
+            ch.setValue(data);
+            mBluetoothGatt.writeCharacteristic(ch);
+            //sleep
+            try {
+                Thread.sleep(1000);
+                data = new byte[] {(byte) 0x00};
+                ch.setValue(data);
+                mBluetoothGatt.writeCharacteristic(ch);
+                NotificationCounter = 0;
+            } catch(InterruptedException e) {
+                data = new byte[] {(byte) 0x00};
+                ch.setValue(data);
+                mBluetoothGatt.writeCharacteristic(ch);
+                NotificationCounter = 0;
+            }
         } else {
             // For all other profiles, writes the data formatted in HEX.
             final byte[] data = characteristic.getValue();
@@ -152,10 +179,15 @@ public class BluetoothLeService extends Service {
         sendBroadcast(intent);
     }
 
+
     public class LocalBinder extends Binder {
         BluetoothLeService getService() {
             return BluetoothLeService.this;
         }
+    }
+    @Override
+    public void onNotificationPosted(StatusBarNotification sbn) {
+        NotificationCounter = 1;
     }
 
     @Override
@@ -172,7 +204,10 @@ public class BluetoothLeService extends Service {
         return super.onUnbind(intent);
     }
 
+
+
     private final IBinder mBinder = new LocalBinder();
+
 
     /**
      * Initializes a reference to the local Bluetooth adapter.
@@ -209,7 +244,11 @@ public class BluetoothLeService extends Service {
      *         {@code BluetoothGattCallback#onConnectionStateChange(android.bluetooth.BluetoothGatt, int, int)}
      *         callback.
      */
+
+
     public boolean connect(final String address) {
+
+
         if (mBluetoothAdapter == null || address == null) {
             Log.w(TAG, "BluetoothAdapter not initialized or unspecified address.");
             return false;
