@@ -74,6 +74,8 @@ public class BluetoothLeService extends NotificationListenerService {
     public final static UUID UUID_WRITE_CHARACTERISTIC =
             UUID.fromString(SampleGattAttributes.CHAR_CUSTOM_SERVICE_WRITE);
 
+
+
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
@@ -119,6 +121,29 @@ public class BluetoothLeService extends NotificationListenerService {
         public void onCharacteristicChanged(BluetoothGatt gatt,
                                             BluetoothGattCharacteristic characteristic) {
             broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+        }
+
+        public void onCharacteristicWrite(BluetoothGatt gatt,
+                                            BluetoothGattCharacteristic characteristic) {
+            if (UUID_WRITE_CHARACTERISTIC.equals(characteristic.getUuid()) ){//&& NotificationCounter==1){
+                byte[] data = new byte[] {(byte) 0x01};
+                BluetoothGattCharacteristic ch = characteristic;
+                ch.setValue(data);
+                mBluetoothGatt.writeCharacteristic(ch);
+                //sleep
+                try {
+                    Thread.sleep(1000);
+                    data = new byte[] {(byte) 0x00};
+                    ch.setValue(data);
+                    mBluetoothGatt.writeCharacteristic(ch);
+                    NotificationCounter = 0;
+                } catch (InterruptedException e) {
+                    data = new byte[] {(byte) 0x00};
+                    ch.setValue(data);
+                    mBluetoothGatt.writeCharacteristic(ch);
+                    NotificationCounter = 0;
+                }
+            }
         }
 
     };
@@ -321,6 +346,32 @@ public class BluetoothLeService extends NotificationListenerService {
         mBluetoothGatt.readCharacteristic(characteristic);
     }
 
+    public void writeCharacteristic(BluetoothGattCharacteristic characteristic, byte[] data1) {
+        if (mBluetoothAdapter == null || mBluetoothGatt == null) {
+            Log.w(TAG, "BluetoothAdapter not initialized");
+            return;
+        }
+        if (UUID_WRITE_CHARACTERISTIC.equals(characteristic.getUuid()) ){//&& NotificationCounter==1){
+            byte[] data = new byte[] {(byte) 0x01};
+            BluetoothGattCharacteristic ch1 = characteristic;
+            BluetoothGattCharacteristic ch2 = characteristic;
+            ch1.setValue(data1);
+            mBluetoothGatt.writeCharacteristic(ch1);
+            //sleep
+            //try {
+            //    Thread.sleep(2000);
+            //    data = new byte[] {(byte) 0x00};
+            //    ch2.setValue(data);
+            //    mBluetoothGatt.writeCharacteristic(ch2);
+            //    NotificationCounter = 0;
+            //} catch (InterruptedException e) {
+            //    data = new byte[] {(byte) 0x00};
+            //    ch2.setValue(data);
+            //    mBluetoothGatt.writeCharacteristic(ch2);
+            //    NotificationCounter = 0;
+            //}
+        }
+    }
     /**
      * Enables or disables notification on a give characteristic.
      *

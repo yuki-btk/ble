@@ -87,6 +87,7 @@ public class DeviceControlActivity extends Activity {
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
+            mWriteBleNanoLedOnOffButton.setEnabled(false);
             mBluetoothLeService = null;
         }
     };
@@ -181,8 +182,24 @@ public class DeviceControlActivity extends Activity {
         mWriteBleNanoLedOnOffButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                byte[] data = new byte[] {(byte) 0x00};
                 if (v.getId() == R.id.blenano_led_onoff_button){
-                    mWriteBleNanoLedOnOffButton.setEnabled(true);
+                    if(mWriteBleNanoLedOnOffButton.isChecked()){
+                        data = new byte[] {(byte) 0x01};
+                    } else {
+                        data = new byte[] {(byte) 0x00};
+                        mWriteBleNanoLedOnOffButton.setChecked(false);
+                    }
+                    BluetoothGattCharacteristic ch;
+
+                    for (int i = 0; i < mGattCharacteristics.size(); i++) {
+                        for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
+                            //Log.d(TAG, "row: " + mGattCharacteristics.size());
+                            //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
+                            ch = mGattCharacteristics.get(i).get(j);
+                            mBluetoothLeService.writeCharacteristic(ch, data);
+                        }
+                    }
                 }
             }
         });
@@ -193,6 +210,7 @@ public class DeviceControlActivity extends Activity {
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
     }
+
 
     @Override
     protected void onResume() {
