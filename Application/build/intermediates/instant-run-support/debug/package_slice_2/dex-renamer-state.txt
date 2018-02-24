@@ -1,4 +1,4 @@
-#Tue Feb 20 12:07:42 JST 2018
-base.0=/Users/koba/Desktop/ble/Application/build/intermediates/transforms/dexMerger/debug/3
+#Fri Feb 23 19:53:35 JST 2018
+base.0=/Users/koba/Desktop/ble/Application/build/intermediates/transforms/dexMerger/debug/2
 path.0=classes.dex
 renamed.0=classes.dex

@@ -28,6 +28,9 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
@@ -49,7 +52,7 @@ import java.util.UUID;
  * communicates with {@code BluetoothLeService}, which in turn interacts with the
  * Bluetooth LE API.
  */
-public class DeviceControlActivity extends Activity {
+public class DeviceControlActivity extends Activity implements ServiceConnection {
     private final static String TAG = DeviceControlActivity.class.getSimpleName();
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
@@ -70,10 +73,11 @@ public class DeviceControlActivity extends Activity {
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
 
+    private Messenger _messenger;
+
 
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
-
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
             mBluetoothLeService = ((BluetoothLeService.LocalBinder) service).getService();
@@ -89,6 +93,21 @@ public class DeviceControlActivity extends Activity {
         public void onServiceDisconnected(ComponentName componentName) {
             mWriteBleNanoLedOnOffButton.setEnabled(false);
             mBluetoothLeService = null;
+        }
+    };
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            // Serviceとの接続確立時に呼び出される。
+            _messenger = new Messenger(service);
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            // Serviceとの切断時に呼び出される。
+            mWriteBleNanoLedOnOffButton.setEnabled(false);
+            //mBindService = null;
+            _messenger = null;
         }
     };
 
@@ -179,43 +198,67 @@ public class DeviceControlActivity extends Activity {
         mDataField = (TextView) findViewById(R.id.data_value);
 
         mWriteBleNanoLedOnOffButton = (ToggleButton) findViewById(R.id.blenano_led_onoff_button);
+        mWriteBleNanoLedOnOffButton.setChecked(true);
         mWriteBleNanoLedOnOffButton.setOnClickListener(new View.OnClickListener() {
             @Override
+//            public void onClick(View v) {
+//                byte[] data = new byte[] {(byte) 0x00};
+//                if (v.getId() == R.id.blenano_led_onoff_button){
+//                    if(mWriteBleNanoLedOnOffButton.isChecked()){
+//                        data = new byte[] {(byte) 0x01};
+//                    } else {
+//                        data = new byte[] {(byte) 0x00};
+//                        mWriteBleNanoLedOnOffButton.setChecked(false);
+//                    }
+//                    BluetoothGattCharacteristic ch;
+//
+//                    for (int i = 0; i < mGattCharacteristics.size(); i++) {
+//                        for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
+//                            //Log.d(TAG, "row: " + mGattCharacteristics.size());
+//                            //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
+//                            ch = mGattCharacteristics.get(i).get(j);
+//                            mBluetoothLeService.writeCharacteristic(ch, data);
+//                        }
+//                    }
+//                }
+//            }
             public void onClick(View v) {
-                byte[] data = new byte[] {(byte) 0x00};
-                if (v.getId() == R.id.blenano_led_onoff_button){
+                if (v.getId() == R.id.blenano_led_onoff_button) {
                     if(mWriteBleNanoLedOnOffButton.isChecked()){
-                        data = new byte[] {(byte) 0x01};
-                    } else {
-                        data = new byte[] {(byte) 0x00};
-                        mWriteBleNanoLedOnOffButton.setChecked(false);
-                    }
-                    BluetoothGattCharacteristic ch;
-
-                    for (int i = 0; i < mGattCharacteristics.size(); i++) {
-                        for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
-                            //Log.d(TAG, "row: " + mGattCharacteristics.size());
-                            //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
-                            ch = mGattCharacteristics.get(i).get(j);
-                            mBluetoothLeService.writeCharacteristic(ch, data);
+                        Object obj = mDeviceAddress;
+                        try {
+                            _messenger.send(Message.obtain(null, 0, obj));
+                        } catch (RemoteException e){
+                            e.printStackTrace();
                         }
+                    } else {
+                        // Serviceをunbindする
+                        unbindService(mConnection);
+                        mWriteBleNanoLedOnOffButton.setChecked(false);
                     }
                 }
             }
         });
 
+        // Serviceをbindする
+        //Intent i = new Intent(DeviceControlActivity.this, NotificationService.class);
+        Intent i = new Intent(this, NotificationService.class);
+        i.putExtra("name", mDeviceName);
+        i.putExtra("address", mDeviceAddress);
+        bindService(i, mConnection, Context.BIND_AUTO_CREATE);
+
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
-        bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+        //bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
     }
+
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         if (mBluetoothLeService != null) {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
@@ -347,5 +390,15 @@ public class DeviceControlActivity extends Activity {
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+
     }
 }

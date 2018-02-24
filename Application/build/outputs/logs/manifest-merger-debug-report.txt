@@ -1,8 +1,8 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
+ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-66:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-66:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-66:12
 MERGED from [com.android.support:support-v13:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-v13-26.1.0.aar/094ae467c983b1d65037ba1801ccc531/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/62d33a8b88a29e785f66f9e7264b6dab/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-v4:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d2c710dea5cf78062657aef7148726c3/AndroidManifest.xml:17:1-31:12
@@ -15,8 +15,8 @@ MERGED from [com.android.support:support-core-ui:26.1.0] /Users/koba/.gradle/cac
 MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/4757e8758fb3fe54bb6a79643f8c2a11/AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-compat:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/725798247d4545dc598ded60ec693d92/AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/3cad7732af14cd322b00dcdb78e8a172/AndroidManifest.xml:17:1-30:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
-INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-56:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-66:12
+INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:18:1-66:12
 	package
 		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:19:5-50
 	android:versionName
@@ -48,7 +48,7 @@ ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:33:5
 	android:name
 		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:33:22-78
 application
-ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:35:5-55:19
+ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:35:5-65:19
 MERGED from [com.android.support:support-v13:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-v13-26.1.0.aar/094ae467c983b1d65037ba1801ccc531/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-v13:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/support-v13-26.1.0.aar/094ae467c983b1d65037ba1801ccc531/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/koba/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/62d33a8b88a29e785f66f9e7264b6dab/AndroidManifest.xml:25:5-29:19
@@ -113,6 +113,20 @@ action#android.service.notification.NotificationListenerService
 ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:50:17-51:82
 	android:name
 		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:50:25-117
+service#com.example.android.bluetoothlegatt.NotificationService
+ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:54:9-63:19
+	android:label
+		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:55:13-45
+	android:permission
+		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:56:13-87
+	android:name
+		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:54:18-53
+intent-filter#.NortificationService+android.service.notification.NotificationListenerService
+ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:57:13-62:29
+action#com.example.android.bluetoothlegatt.NortificationService
+ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:60:17-61:47
+	android:name
+		ADDED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml:60:25-82
 uses-sdk
 INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/koba/Desktop/ble/Application/src/main/AndroidManifest.xml

@@ -210,10 +210,10 @@ public class BluetoothLeService extends NotificationListenerService {
             return BluetoothLeService.this;
         }
     }
-    @Override
-    public void onNotificationPosted(StatusBarNotification sbn) {
-        NotificationCounter = 1;
-    }
+    //@Override
+    //public void onNotificationPosted(StatusBarNotification sbn) {
+    //    NotificationCounter = 1;
+    //}
 
     @Override
     public IBinder onBind(Intent intent) {
