@@ -20,6 +20,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by yorke on 2018/02/12.
@@ -79,25 +81,26 @@ public class NotificationService extends NotificationListenerService {
             }
             // Automatically connects to the device upon successful start-up initialization.
             mBluetoothLeService.connect(mDeviceAddress);
-            GetCharacteristics(mBluetoothLeService.getSupportedGattServices());
 
-            //test
-            byte[] data = new byte[]{(byte) 0x01};
-            BluetoothGattCharacteristic ch;
-            for (int i = 0; i < mGattCharacteristics.size(); i++) {
-                for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
-                    //Log.d(TAG, "row: " + mGattCharacteristics.size());
-                    //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
-                    ch = mGattCharacteristics.get(i).get(j);
-                    mBluetoothLeService.writeCharacteristic(ch, data);
-                }
+
+            int counter = 0;
+            while((mGattCharacteristics.size() == 0) && counter < 50000){
+                //timer.schedule(task, 500);
+                GetCharacteristics(mBluetoothLeService.getSupportedGattServices());
+                counter++;
             }
+            LedOn();
 
+            // call LedOff() after 1 second
+            Timer timer = new Timer();
+            TimerLedOff task = new TimerLedOff();
+            timer.schedule(task,1000);
         }
 
         public void onServiceDisconnected(ComponentName className) {
             // Serviceとの切断時に呼び出される。
         }
+
     };
 
     @Override
@@ -139,33 +142,24 @@ public class NotificationService extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         //通知が更新
-        //registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+        LedOn();
 
-        byte[] data = new byte[]{(byte) 0x01};
-        BluetoothGattCharacteristic ch;
-        for (int i = 0; i < mGattCharacteristics.size(); i++) {
-            for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
-                //Log.d(TAG, "row: " + mGattCharacteristics.size());
-                //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
-                ch = mGattCharacteristics.get(i).get(j);
-                mBluetoothLeService.writeCharacteristic(ch, data);
-            }
-        }
+        // call LedOff() after 1 second
+        Timer timer = new Timer();
+        TimerLedOff task = new TimerLedOff();
+        timer.schedule(task,1000);
+
     }
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
         //通知が削除
-        byte[] data = new byte[]{(byte) 0x00};
-        BluetoothGattCharacteristic ch;
-        for (int i = 0; i < mGattCharacteristics.size(); i++) {
-            for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
-                //Log.d(TAG, "row: " + mGattCharacteristics.size());
-                //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
-                ch = mGattCharacteristics.get(i).get(j);
-                mBluetoothLeService.writeCharacteristic(ch, data);
-            }
-        }
+        LedOn();
+
+        // call LedOff() after 1 second
+        Timer timer = new Timer();
+        TimerLedOff task = new TimerLedOff();
+        timer.schedule(task,1000);
     }
 
     private void GetCharacteristics(List<BluetoothGattService> gattServices) {
@@ -208,6 +202,7 @@ public class NotificationService extends NotificationListenerService {
             gattCharacteristicData.add(gattCharacteristicGroupData);
         }
 
+
 //        SimpleExpandableListAdapter gattServiceAdapter = new SimpleExpandableListAdapter(
 //                this,
 //                gattServiceData,
@@ -223,6 +218,41 @@ public class NotificationService extends NotificationListenerService {
     }
 
 
+    private void LedOn(){
+        //test
+        byte[] data = new byte[]{(byte) 0x01};
+        BluetoothGattCharacteristic ch;
+        for (int i = 0; i < mGattCharacteristics.size(); i++) {
+            for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
+                //Log.d(TAG, "row: " + mGattCharacteristics.size());
+                //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
+                ch = mGattCharacteristics.get(i).get(j);
+                mBluetoothLeService.writeCharacteristic(ch, data);
+            }
+        }
+    }
+
+    private void LedOff(){
+        //test
+        byte[] data = new byte[]{(byte) 0x00};
+        BluetoothGattCharacteristic ch;
+        for (int i = 0; i < mGattCharacteristics.size(); i++) {
+            for (int j = 0; j < mGattCharacteristics.get(i).size(); j++) {
+                //Log.d(TAG, "row: " + mGattCharacteristics.size());
+                //Log.d(TAG, "col: " + mGattCharacteristics.get(i).size());
+                ch = mGattCharacteristics.get(i).get(j);
+                mBluetoothLeService.writeCharacteristic(ch, data);
+            }
+        }
+    }
+    private class TimerLedOff extends TimerTask {
+
+        @Override
+        public void run() {
+            // This method is called once the time is elapsed
+            LedOff();
+        }
+    }
 
     public void BindBluetoothLe(){
         Intent itt = new Intent(this, BluetoothLeService.class);
