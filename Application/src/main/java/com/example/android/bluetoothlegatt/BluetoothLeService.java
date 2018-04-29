@@ -16,6 +16,7 @@
 
 package com.example.android.bluetoothlegatt;
 
+import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -42,8 +43,8 @@ import android.service.notification.StatusBarNotification;
  * Service for managing connection and data communication with a GATT server hosted on a
  * given Bluetooth LE device.
  */
-//public class BluetoothLeService extends Service {
-public class BluetoothLeService extends NotificationListenerService {
+public class BluetoothLeService extends Service {
+//public class BluetoothLeService extends NotificationListenerService {
     private final static String TAG = BluetoothLeService.class.getSimpleName();
 
     private BluetoothManager mBluetoothManager;

@@ -59,27 +59,27 @@ public class DeviceScanActivity extends ListActivity {
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
 
-    private void showNotificationAccessSettingMenu() {
-        Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
-        startActivity(intent);
-    }
-    private boolean isEnabledReadNotification() {
-        ContentResolver contentResolver = getContentResolver();
-        String rawListeners = Settings.Secure.getString(contentResolver,
-                "enabled_notification_listeners");
-        if (rawListeners == null || "".equals(rawListeners)) {
-            return false;
-        } else {
-            String[] listeners = rawListeners.split(":");
-            for (String listener : listeners) {
-                if (listener.startsWith(getPackageName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+//    private void showNotificationAccessSettingMenu() {
+//        Intent intent = new Intent();
+//        intent.setAction(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+//        startActivity(intent);
+//    }
+//    private boolean isEnabledReadNotification() {
+//        ContentResolver contentResolver = getContentResolver();
+//        String rawListeners = Settings.Secure.getString(contentResolver,
+//                "enabled_notification_listeners");
+//        if (rawListeners == null || "".equals(rawListeners)) {
+//            return false;
+//        } else {
+//            String[] listeners = rawListeners.split(":");
+//            for (String listener : listeners) {
+//                if (listener.startsWith(getPackageName())) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,12 +115,12 @@ public class DeviceScanActivity extends ListActivity {
             return;
         }
 
-        // Checks notification service
-        if (!isEnabledReadNotification()) {
-            showNotificationAccessSettingMenu();
-        } else {
-
-        }
+//        // Checks notification service
+//        if (!isEnabledReadNotification()) {
+//            showNotificationAccessSettingMenu();
+//        } else {
+//
+//        }
     }
 
     @Override

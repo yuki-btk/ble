@@ -80,8 +80,8 @@ public class NotificationService extends NotificationListenerService {
                 //finish();
             }
             // Automatically connects to the device upon successful start-up initialization.
-            mBluetoothLeService.connect(mDeviceAddress);
-
+            //mBluetoothLeService.connect(mDeviceAddress);
+            mBluetoothLeService.connect("C3:E1:A3:56:8A:BD");
 
             int counter = 0;
             while((mGattCharacteristics.size() == 0) && counter < 50000){
@@ -131,6 +131,12 @@ public class NotificationService extends NotificationListenerService {
         _messenger = new Messenger(new TestHandler(getApplicationContext()));
         //String hoge = mDeviceAddress;
 
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        // to do something
+        return START_NOT_STICKY;
     }
 
     @Override
