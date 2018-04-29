@@ -36,6 +36,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
@@ -71,33 +72,14 @@ public class DeviceControlActivity extends Activity implements ServiceConnection
     private boolean mConnected = false;
     //private BluetoothGattCharacteristic mNotifyCharacteristic;
     private ToggleButton mWriteBleNanoLedOnOffButton;
+    private Button AccessServiceSettingButton;
 
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
 
     private Messenger _messenger;
 
-    private void showNotificationAccessSettingMenu() {
-        Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
-        startActivity(intent);
-    }
-    private boolean isEnabledReadNotification() {
-        ContentResolver contentResolver = getContentResolver();
-        String rawListeners = Settings.Secure.getString(contentResolver,
-                "enabled_notification_listeners");
-        if (rawListeners == null || "".equals(rawListeners)) {
-            return false;
-        } else {
-            String[] listeners = rawListeners.split(":");
-            for (String listener : listeners) {
-                if (listener.startsWith(getPackageName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+
     // Code to manage Service lifecycle.
 //    private final ServiceConnection mServiceConnection = new ServiceConnection() {
 //        @Override
@@ -122,7 +104,7 @@ public class DeviceControlActivity extends Activity implements ServiceConnection
 
         public void onServiceConnected(ComponentName className, IBinder service) {
             // Serviceとの接続確立時に呼び出される。
-            _messenger = new Messenger(service);
+            //_messenger = new Messenger(service);
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -222,6 +204,8 @@ public class DeviceControlActivity extends Activity implements ServiceConnection
         mWriteBleNanoLedOnOffButton = (ToggleButton) findViewById(R.id.blenano_led_onoff_button);
         mWriteBleNanoLedOnOffButton.setChecked(false);
 
+        AccessServiceSettingButton = (Button) findViewById(R.id.access_service_setting_button);
+
 
 
         final Intent i = new Intent(this, NotificationService.class);
@@ -256,11 +240,12 @@ public class DeviceControlActivity extends Activity implements ServiceConnection
             public void onClick(View v) {
                 if (v.getId() == R.id.blenano_led_onoff_button) {
                     if(mWriteBleNanoLedOnOffButton.isChecked()){
-                        Object obj = mDeviceAddress;
+//                        Object obj = mDeviceAddress;
 //                        try {
 //                            _messenger.send(Message.obtain(null, 0, obj));
-                            bindService(i, mConnection, Context.BIND_AUTO_CREATE);
-                            mWriteBleNanoLedOnOffButton.setChecked(true);
+                        bindService(i, mConnection, Context.BIND_AUTO_CREATE);
+                        mWriteBleNanoLedOnOffButton.setChecked(true);
+
 //                        } catch (RemoteException e){
 //                            e.printStackTrace();
 //                        }
@@ -269,6 +254,17 @@ public class DeviceControlActivity extends Activity implements ServiceConnection
                         unbindService(mConnection);
                         mWriteBleNanoLedOnOffButton.setChecked(false);
                     }
+                }
+
+            }
+        });
+
+        AccessServiceSettingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.access_service_setting_button) {
+                    Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                    startActivity(intent);
                 }
             }
         });
@@ -284,13 +280,14 @@ public class DeviceControlActivity extends Activity implements ServiceConnection
 //        i.putExtra("address", mDeviceAddress);
 //        bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 
+
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        if (!isEnabledReadNotification()) {
-            showNotificationAccessSettingMenu();
-        } else {
-
-        }
+//        if (!isEnabledReadNotification()) {
+//            showNotificationAccessSettingMenu();
+//        } else {
+//
+//        }
         //Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         //bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 

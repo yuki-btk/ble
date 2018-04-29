@@ -1,8 +1,8 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-66:12
-INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-66:12
-INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-66:12
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-62:12
+INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-62:12
+INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-62:12
 MERGED from [com.android.support:support-v13:27.1.1] C:\Users\kawarabatake\.gradle\caches\transforms-1\files-1.1\support-v13-27.1.1.aar\410324160325edcd7b35cdbbdb5706f9\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-v4:27.1.1] C:\Users\kawarabatake\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\3089db465793b85492191eb698aa49bf\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:cardview-v7:27.1.1] C:\Users\kawarabatake\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.1.aar\ea48bb99c6ed0c7a3e6bbe3564c5dcb3\AndroidManifest.xml:17:1-22:12
@@ -18,8 +18,8 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\kawarabatake\.gradle
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\kawarabatake\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\ef9724e218a3c6bff840d4a8b3f383fe\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\kawarabatake\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\8157ed87f2f81253c408a9801e791939\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\kawarabatake\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\601155dd8b654f4512e6029c3bbb3646\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-66:12
-INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-66:12
+INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-62:12
+INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:18:1-62:12
 	package
 		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:19:5-50
 	android:versionName
@@ -51,61 +51,59 @@ ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\Android
 	android:name
 		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:33:22-78
 application
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:35:5-65:19
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:36:5-61:19
 	android:label
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:35:18-50
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:36:18-50
 	android:icon
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:36:9-45
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:37:9-45
 	android:theme
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:37:9-56
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:38:9-56
 activity#com.example.android.bluetoothlegatt.DeviceScanActivity
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:38:9-44:20
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:39:9-45:20
 	android:label
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:39:13-45
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:40:13-45
 	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:38:19-53
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:39:19-53
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:40:13-43:29
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:41:13-44:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:41:17-68
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:42:17-68
 	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:41:25-66
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:42:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:42:17-76
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:43:17-76
 	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:42:27-74
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:43:27-74
 activity#com.example.android.bluetoothlegatt.DeviceControlActivity
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:45:9-58
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:46:9-58
 	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:45:19-56
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:46:19-56
 service#com.example.android.bluetoothlegatt.BluetoothLeService
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:46:9-53:19
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:47:9-49:19
 	android:label
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:47:13-45
-	android:permission
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:48:13-87
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:48:13-45
 	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:46:18-52
-intent-filter#action:name:android.service.notification.NotificationListenerService
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:49:13-52:29
-action#android.service.notification.NotificationListenerService
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:50:17-51:82
-	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:50:25-118
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:47:18-52
 service#com.example.android.bluetoothlegatt.NotificationService
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:54:9-63:19
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:50:9-59:19
 	android:label
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:55:13-45
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:51:13-45
 	android:permission
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:56:13-87
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:52:13-79
 	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:54:18-53
-intent-filter#action:name:.NortificationService+action:name:android.service.notification.NotificationListenerService
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:57:13-62:29
-action#com.example.android.bluetoothlegatt.NortificationService
-ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:60:17-61:47
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:50:18-53
+intent-filter#action:name:android.accessibilityservice.AccessibilityService
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:53:13-55:29
+action#android.accessibilityservice.AccessibilityService
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:54:17-92
 	android:name
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:60:25-83
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:54:25-89
+meta-data#android.accessibilityservice
+ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:56:13-58:54
+	android:resource
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:58:17-51
+	android:name
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:57:17-60
 uses-sdk
 INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml
