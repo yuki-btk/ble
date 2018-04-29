@@ -67,71 +67,73 @@ public class NotificationService extends AccessibilityService {
             // Notificationの表示に変更があったとき
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:
                 typeName = "TYPE_NOTIFICATION_STATE_CHANGED";
-                LedOn();
-                // call LedOff() after 1 second
-                Timer timer = new Timer();
-                TimerLedOff task = new TimerLedOff();
-                timer.schedule(task,1000);
+                BT_Connect_and_Led(mDeviceAddress);
                 break;
-            // View をタップしたとき
-            case AccessibilityEvent.TYPE_VIEW_CLICKED:
-                typeName = "TYPE_VIEW_CLICKED";
+            // View をスクロールしたとき
+            // case AccessibilityEvent.TYPE_VIEW_SCROLLED:
+            case AccessibilityEventCompat.TYPE_VIEW_SCROLLED:
+                typeName = "TYPE_VIEW_SCROLLED";
+                BT_Connect_and_Led(mDeviceAddress);
                 break;
-            // View にフォーカスがあたったとき
-            case AccessibilityEvent.TYPE_VIEW_FOCUSED:
-                typeName = "TYPE_VIEW_FOCUSED";
-                break;
-            // View をロングタップしたとき
-            case AccessibilityEvent.TYPE_VIEW_LONG_CLICKED:
-                typeName = "TYPE_VIEW_LONG_CLICKED";
-                break;
-            // View が選択されたとき
-            case AccessibilityEvent.TYPE_VIEW_SELECTED:
-                typeName = "TYPE_VIEW_SELECTED";
-                break;
-            // View のテキストが変更されたとき
-            case AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED:
-                typeName = "TYPE_VIEW_TEXT_CHANGED";
-                break;
-            // 画面の表示に変更があったとき
-            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
-                typeName = "TYPE_WINDOW_STATE_CHANGED";
-                break;
-            // アナウンスがあったとき
-            // case AccessibilityEvent.TYPE_ANNOUNCEMENT:
-            case AccessibilityEventCompat.TYPE_ANNOUNCEMENT:
-                typeName = "TYPE_ANNOUNCEMENT";
-                break;
-            // ジェスチャーが終わったとき
-            // case AccessibilityEvent.TYPE_GESTURE_DETECTION_END:
-            case AccessibilityEventCompat.TYPE_GESTURE_DETECTION_END:
-                typeName = "TYPE_GESTURE_DETECTION_END";
-                break;
-            // ジェスチャーが始まったとき
-            // case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-            case AccessibilityEventCompat.TYPE_GESTURE_DETECTION_START:
-                typeName = "TYPE_GESTURE_DETECTION_START";
-                break;
-            // タッチ探索が終わったとき
-            // case AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_END:
-            case AccessibilityEventCompat.TYPE_TOUCH_EXPLORATION_GESTURE_END:
-                typeName = "TYPE_TOUCH_EXPLORATION_GESTURE_END";
-                break;
-            // タッチ探索が始まったとき
-            // case AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_START:
-            case AccessibilityEventCompat.TYPE_TOUCH_EXPLORATION_GESTURE_START:
-                typeName = "TYPE_TOUCH_EXPLORATION_GESTURE_START";
-                break;
-            // タッチ操作が終わったとき
-            // case AccessibilityEvent.TYPE_TOUCH_INTERACTION_END:
-            case AccessibilityEventCompat.TYPE_TOUCH_INTERACTION_END:
-                typeName = "TYPE_TOUCH_INTERACTION_END";
-                break;
-            // タッチ操作が始まったとき
-            // case AccessibilityEvent.TYPE_TOUCH_INTERACTION_START:
-            case AccessibilityEventCompat.TYPE_TOUCH_INTERACTION_START:
-                typeName = "TYPE_TOUCH_INTERACTION_START";
-                break;
+//            // View をタップしたとき
+//            case AccessibilityEvent.TYPE_VIEW_CLICKED:
+//                typeName = "TYPE_VIEW_CLICKED";
+//                break;
+//            // View にフォーカスがあたったとき
+//            case AccessibilityEvent.TYPE_VIEW_FOCUSED:
+//                typeName = "TYPE_VIEW_FOCUSED";
+//                break;
+//            // View をロングタップしたとき
+//            case AccessibilityEvent.TYPE_VIEW_LONG_CLICKED:
+//                typeName = "TYPE_VIEW_LONG_CLICKED";
+//                break;
+//            // View が選択されたとき
+//            case AccessibilityEvent.TYPE_VIEW_SELECTED:
+//                typeName = "TYPE_VIEW_SELECTED";
+//                break;
+//            // View のテキストが変更されたとき
+//            case AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED:
+//                typeName = "TYPE_VIEW_TEXT_CHANGED";
+//                break;
+//            // 画面の表示に変更があったとき
+//            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
+//                typeName = "TYPE_WINDOW_STATE_CHANGED";
+//                break;
+//            // アナウンスがあったとき
+//            // case AccessibilityEvent.TYPE_ANNOUNCEMENT:
+//            case AccessibilityEventCompat.TYPE_ANNOUNCEMENT:
+//                typeName = "TYPE_ANNOUNCEMENT";
+//                break;
+//            // ジェスチャーが終わったとき
+//            // case AccessibilityEvent.TYPE_GESTURE_DETECTION_END:
+//            case AccessibilityEventCompat.TYPE_GESTURE_DETECTION_END:
+//                typeName = "TYPE_GESTURE_DETECTION_END";
+//                break;
+//            // ジェスチャーが始まったとき
+//            // case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
+//            case AccessibilityEventCompat.TYPE_GESTURE_DETECTION_START:
+//                typeName = "TYPE_GESTURE_DETECTION_START";
+//                break;
+//            // タッチ探索が終わったとき
+//            // case AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_END:
+//            case AccessibilityEventCompat.TYPE_TOUCH_EXPLORATION_GESTURE_END:
+//                typeName = "TYPE_TOUCH_EXPLORATION_GESTURE_END";
+//                break;
+//            // タッチ探索が始まったとき
+//            // case AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_START:
+//            case AccessibilityEventCompat.TYPE_TOUCH_EXPLORATION_GESTURE_START:
+//                typeName = "TYPE_TOUCH_EXPLORATION_GESTURE_START";
+//                break;
+//            // タッチ操作が終わったとき
+//            // case AccessibilityEvent.TYPE_TOUCH_INTERACTION_END:
+//            case AccessibilityEventCompat.TYPE_TOUCH_INTERACTION_END:
+//                typeName = "TYPE_TOUCH_INTERACTION_END";
+//                break;
+//            // タッチ操作が始まったとき
+//            // case AccessibilityEvent.TYPE_TOUCH_INTERACTION_START:
+//            case AccessibilityEventCompat.TYPE_TOUCH_INTERACTION_START:
+//                typeName = "TYPE_TOUCH_INTERACTION_START";
+//                break;
 //            // View のアクセシビリティ・フォーカスがクリアされたとき
 //            // case AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED:
 //            case AccessibilityEventCompat.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED:
@@ -152,11 +154,7 @@ public class NotificationService extends AccessibilityService {
 //            case AccessibilityEventCompat.TYPE_VIEW_HOVER_EXIT:
 //                typeName = "TYPE_VIEW_HOVER_EXIT";
 //                break;
-            // View をスクロールしたとき
-            // case AccessibilityEvent.TYPE_VIEW_SCROLLED:
-            case AccessibilityEventCompat.TYPE_VIEW_SCROLLED:
-                typeName = "TYPE_VIEW_SCROLLED";
-                break;
+
 //            // View のテキスト範囲が変更されたとき
 //            // case AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED:
 //            case AccessibilityEventCompat.TYPE_VIEW_TEXT_SELECTION_CHANGED:
@@ -175,12 +173,12 @@ public class NotificationService extends AccessibilityService {
 //            default:
 //                typeName = "UNKNOWN_TYPE";
         }
-        if (mToast == null) {
-            mToast = Toast.makeText(getApplicationContext(), typeName, Toast.LENGTH_SHORT);
-        } else {
-            mToast.setText(typeName);
-        }
-        mToast.show();
+//        if (mToast == null) {
+//            mToast = Toast.makeText(getApplicationContext(), typeName, Toast.LENGTH_SHORT);
+//        } else {
+//            mToast.setText(typeName);
+//        }
+//        mToast.show();
     }
 
 //    static class TestHandler extends Handler {
@@ -212,22 +210,19 @@ public class NotificationService extends AccessibilityService {
                 //finish();
             }
             // Automatically connects to the device upon successful start-up initialization.
-            String hoge=mDeviceAddress;
-            mBluetoothLeService.connect(mDeviceAddress);
-            //mBluetoothLeService.connect(DEVICEADDRESS);
+            BT_Connect_and_Led(mDeviceAddress);
 
-            int counter = 0;
-            while((mGattCharacteristics.size() == 0) && counter < 50000){
-                //timer.schedule(task, 500);
-                GetCharacteristics(mBluetoothLeService.getSupportedGattServices());
-                counter++;
-            }
-            LedOn();
-
-            // call LedOff() after 1 second
-            Timer timer = new Timer();
-            TimerLedOff task = new TimerLedOff();
-            timer.schedule(task,1000);
+//            mBluetoothLeService.connect(mDeviceAddress);
+//            int counter = 0;
+//            while((mGattCharacteristics.size() == 0) && counter < 50000){
+//                GetCharacteristics(mBluetoothLeService.getSupportedGattServices());
+//                counter++;
+//            }
+//            LedOn();
+//            // call LedOff() after 1 second
+//            Timer timer = new Timer();
+//            TimerLedOff task = new TimerLedOff();
+//            timer.schedule(task,1000);
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -348,6 +343,20 @@ public class NotificationService extends AccessibilityService {
             // This method is called once the time is elapsed
             LedOff();
         }
+    }
+
+    public void BT_Connect_and_Led(String DeviceAdress){
+        mBluetoothLeService.connect(mDeviceAddress);
+        int counter = 0;
+        while((mGattCharacteristics.size() == 0) && counter < 50000){
+            GetCharacteristics(mBluetoothLeService.getSupportedGattServices());
+            counter++;
+        }
+        LedOn();
+        // call LedOff() after 1 second
+        Timer timer = new Timer();
+        TimerLedOff task = new TimerLedOff();
+        timer.schedule(task,1000);
     }
 
     public void BindBluetoothLe(){

@@ -55,7 +55,7 @@ ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\Android
 	android:label
 		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:36:18-50
 	android:icon
-		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:37:9-45
+		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:37:9-46
 	android:theme
 		ADDED from C:\Users\kawarabatake\StudioProjects\ble\Application\src\main\AndroidManifest.xml:38:9-56
 activity#com.example.android.bluetoothlegatt.DeviceScanActivity
