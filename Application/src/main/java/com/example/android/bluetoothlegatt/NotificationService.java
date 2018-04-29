@@ -59,6 +59,7 @@ public class NotificationService extends AccessibilityService {
 
     private Toast mToast;
 
+
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         int type = event.getEventType();
